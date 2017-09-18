@@ -2,8 +2,8 @@
 #Sarah Friedman
 #9/17/17
 
-string = open("Madlibs.txt", "r")
-string = string.read()
+file = open("Madlibs.txt", "r")
+string = file.read()
 
 input_one = input("Enter a place: ")
 input_two = input("Enter a noun: ")
@@ -44,3 +44,4 @@ newString = (newString.replace("[", ""))
 newString = (newString.replace("]", ""))
 print(newString)
 
+file.close()
