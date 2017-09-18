@@ -27,11 +27,9 @@ replaceWith["7"] = [input_seven]
 replaceWith["8"] = [input_eight]
 replaceWith["9"] = [input_nine]
 
-print(replaceWith)
 
 newString = []
 words = string.split()
-print(words)
 
 for word in words:
     if word in replaceWith:
@@ -39,6 +37,10 @@ for word in words:
     else:
         newString.append(word)
 
+newString = str(newString)
+newString = (newString.replace("'", ""))
+newString = (newString.replace(",", ""))
+newString = (newString.replace("[", ""))
+newString = (newString.replace("]", ""))
 print(newString)
-print("".join(newString))
 
