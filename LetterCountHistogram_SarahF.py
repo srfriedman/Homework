@@ -3,7 +3,7 @@
 #9/18/17
 
 import turtle
-t = turtle.Turtle()
+t1 = turtle.Turtle()
 t2 = turtle.Turtle()
 wn = turtle.Screen()
 wn.setworldcoordinates(-400, -400, 400, 400)
@@ -16,6 +16,7 @@ alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n"
 letterVal = []
 
 dictionary = {}
+
 
 def drawChart(t, tt):
     tt.ht()
@@ -77,12 +78,12 @@ def draw(val, t):
         if x > 0:
             t.forward(11.5)
             t.left(90)
-            t.forward((x)*25)
+            t.forward(x*25)
             t.write(x)
             t.right(90)
             t.forward(11.5)
             t.right(90)
-            t.forward((x)*25)
+            t.forward(x*25)
             t.left(90)
             x = x+1
         else:
@@ -97,7 +98,8 @@ countAll(string)
 countAppearance()
 print(letterVal)
 
-drawChart(t, t2)
+
+drawChart(t1, t2)
 draw(letterVal, turtle)
 
 wn.exitonclick()
