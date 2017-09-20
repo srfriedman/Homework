@@ -73,6 +73,8 @@ def draw(val, t):
     t.penup()
     t.goto(-300, -300)
     t.pendown()
+    t.pensize(4)
+    t.speed(0)
 
     for x in val:
         if x > 0:
@@ -100,6 +102,6 @@ print(letterVal)
 
 
 drawChart(t1, t2)
-draw(letterVal, turtle)
+draw(letterVal, t2)
 
 wn.exitonclick()
