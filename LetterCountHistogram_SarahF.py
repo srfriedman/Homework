@@ -5,21 +5,26 @@
 import turtle
 t1 = turtle.Turtle()
 t2 = turtle.Turtle()
+t3 = turtle.Turtle()
+
 wn = turtle.Screen()
 wn.setworldcoordinates(-400, -400, 400, 400)
 
-string = str(input("Input a string: "))
+string = str(input("Input an all lower-case string: "))
 
 alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u",
             "v", "w", "x", "y", "z"]
+
+numList = [26, 25, 24, 23, 22, 21, 20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
 
 letterVal = []
 
 dictionary = {}
 
 
-def drawChart(t, tt):
+def drawChart(t, tt, Tt):
     tt.ht()
+    Tt.ht()
 
     t.penup()
     t.backward(300)
@@ -32,18 +37,29 @@ def drawChart(t, tt):
     tt.penup()
     tt.goto(-300, -315)
 
+    Tt.penup()
+    Tt.goto(-315, 300)
+
     x = 0
 
     t.forward(11.5)
     tt.forward(11.5)
     t.dot(5)
+
     tt.write(alphabet[x])
+    Tt.write(numList[x])
+    Tt.right(90)
+
     x = x+1
     for letter in range(25):
         t.forward(23)
         tt.forward(23)
+        Tt.forward(23)
         t.dot(5)
+
         tt.write(alphabet[x])
+        Tt.write(numList[x])
+
         x = x+1
     t.ht()
 
@@ -81,7 +97,7 @@ def draw(val, t):
             t.forward(11.5)
             t.left(90)
             t.forward(x*25)
-            t.write(x)
+#            t.write(x)
             t.right(90)
             t.forward(11.5)
             t.right(90)
@@ -93,15 +109,16 @@ def draw(val, t):
             x = x+1
     t.ht()
 
-countAll(string)
-print("Dict: ", dictionary)
 
-countAll(string)
-countAppearance()
-print(letterVal)
+def main():
+    countAll(string)
+    countAppearance()
+    print("Dict: ", dictionary)
+    print(letterVal)
 
+    drawChart(t1, t2, t3)
+    draw(letterVal, t2)
 
-drawChart(t1, t2)
-draw(letterVal, t2)
+    wn.exitonclick()
 
-wn.exitonclick()
+main()
