@@ -2,7 +2,6 @@
 #Sarah Friedman
 #9/12/17
 
-#DOES NOT WORK
 
 file = open("studentdata.txt", "r")
 
