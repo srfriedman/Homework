@@ -1,28 +1,40 @@
-aliceBook = open("Alice's_Adventures_In_Wonderland.txt", "r")
-aliceWrite = open("Written_Alice.txt", "w")
+#CSII Assessment #1
+#Question #7
+#Sarah Friedman
 
-string = aliceBook.read()
+try:
+    text = open("Alice's_Adventures_In_Wonderland", "r")
+    text = text.read()
 
-words = string.split()
+    def key_sort(text):
+        dict = {}
+        dictTwo = {}
+        word = ''
+        for aline in text:
+            letter = aline
+            if letter != ' ':
+                word = word + letter
+            else:
+                dict[word] = text.count(word)
+                word = ''
+        key_list = list(dict.keys())
+        key_list = sorted(dict)
+        begin = key_list.index("A")
+        for i in key_list[begin:]:
+            for i in key_list[begin:]:
+                dictTwo[i] = text.count(i)
+            return dictTwo
 
-alice_words = {}
+    dict = key_sort(text)
 
-character = ["â", "€", "™", "œ", "˜"]
-
-
-def sortedList(dict, writeTo, char):
-    keylist = list(dict.keys())
-    keylist.sort()
-    start = keylist.index("Alice")
-    allWords = str(keylist[start:])
-
-    for word in allWords:
-        if word in char:
-            allWords = allWords.replace(char, "")
-
-    writeTo.write("".join(allWords))
-
-for word in words:
-    alice_words[word] = words.count(word)
-
-sortedList(alice_words, aliceWrite, character)
+    try:
+        file = open("Written_Alice", "w")
+        try:
+            file.write(str(dict))
+        finally:
+            file.close()
+    finally:
+        file = open("Written_Alice", "w")
+        file.close()
+except IOError:
+    print("This file is not found.")
