@@ -48,7 +48,6 @@ class Point:
             b = int(b)
             return "y = ", m, "x + ", b
 
-
 p1 = Point(10, 0)
 p2 = Point(0, -10)
 p3 = Point(0, 10)
