@@ -2,7 +2,7 @@
 #10/16/17
 #Sarah Friedman
 
-#16.11 Exercises 6
+#16.11 Exercise 6
 
 import math
 
