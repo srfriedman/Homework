@@ -4,11 +4,6 @@
 
 #Button Exercise
 
-# Complete the button example. You will need to download the graphics module located in the Object and
-# Classes Topic on the Topics page. Make sure that this module is in the same folder or directory as your programs that
-# use it so that Python can find it. A description of the graphics module is located in the topics section with the .py
-# file for further documentation on how to implement the graphics module.
-
 from random import randrange
 from graphics import GraphWin, Point
 
