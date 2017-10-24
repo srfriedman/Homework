@@ -23,8 +23,6 @@ class MSDie:
     def setValue(self, value):
         self.value = value
 
-
-
 def main():
     die1 = MSDie(12)
     die1.setValue(8)
