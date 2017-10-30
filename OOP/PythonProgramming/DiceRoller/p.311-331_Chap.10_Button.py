@@ -15,12 +15,12 @@ def main():
     win.setCoords(0, 0, 10, 10)
     win.setBackground("green2")
 
-    die1 = DieView(win, Point(3,7), 2)
-    die2 = DieView(win, Point(7,7), 2)
+    die1 = DieView(win, Point(3, 7), 2)
+    die2 = DieView(win, Point(7, 7), 2)
 
-    rollButton = Button(win, Point(5,4.5), 6, 1, "Roll Dice")
+    rollButton = Button(win, Point(5, 4.5), 3, 2, "Roll Dice")
     rollButton.activate()
-    quitButton = Button(win, Point(5,1), 2, 1, "Quit")
+    quitButton = Button(win, Point(5, 2), 5, 2, "Quit")
 
     pt = win.getMouse()
     while not quitButton.clicked(pt):
