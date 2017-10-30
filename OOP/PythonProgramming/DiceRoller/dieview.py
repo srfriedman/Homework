@@ -49,30 +49,3 @@ class DieView:
 
         for i in self.onTable[value]:
             self.pips[i].setFill(self.foregroud)
-
-        # if value == 1:
-        #     self.pips[3].setFill(self.foregroud)
-        # elif value == 2:
-        #     self.pips[0].setFill(self.foregroud)
-        #     self.pips[6].setFill(self.foregroud)
-        # elif value == 3:
-        #     for i in [0, 3, 6]:
-        #         self.pips[i].setFill(self.foregroud)
-        # elif value == 4:
-        #     self.pip1.setFill(self.foregroud)
-        #     self.pip3.setFill(self.foregroud)
-        #     self.pip5.setFill(self.foregroud)
-        #     self.pip7.setFill(self.foregroud)
-        # elif value == 5:
-        #     self.pip1.setFill(self.foregroud)
-        #     self.pip3.setFill(self.foregroud)
-        #     self.pip4.setFill(self.foregroud)
-        #     self.pip5.setFill(self.foregroud)
-        #     self.pip7.setFill(self.foregroud)
-        # else:
-        #     self.pip1.setFill(self.foregroud)
-        #     self.pip2.setFill(self.foregroud)
-        #     self.pip3.setFill(self.foregroud)
-        #     self.pip5.setFill(self.foregroud)
-        #     self.pip6.setFill(self.foregroud)
-        #     self.pip7.setFill(self.foregroud)
