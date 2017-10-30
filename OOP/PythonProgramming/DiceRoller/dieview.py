@@ -21,13 +21,18 @@ class DieView:
         rect.draw(win)
         rect.setFill(self.background)
 
-        self.pip1 = self.__makePip(cx-offset, cy-offset)
-        self.pip2 = self.__makePip(cx-offset, cy)
-        self.pip3 = self.__makePip(cx-offset, cy+offset)
-        self.pip4 = self.__makePip(cx, cy)
-        self.pip5 = self.__makePip(cx+offset, cy-offset)
-        self.pip6 = self.__makePip(cx+offset, cy)
-        self.pip7 = self.__makePip(cx+offset, cy+offset)
+        self.pips = [
+            self.__makePip(cx-offset, cy-offset),
+            self.__makePip(cx-offset, cy),
+            self.__makePip(cx-offset, cy+offset),
+            self.__makePip(cx, cy),
+            self.__makePip(cx+offset, cy-offset),
+            self.__makePip(cx+offset, cy),
+            self.__makePip(cx+offset, cy+offset)
+        ]
+
+        self.onTable = [[], [3], [2, 4], [2, 3, 4], [0, 2, 4, 6], [0, 2, 3, 4, 6],
+                        [0, 1, 2, 4, 5, 6]]
 
         self.setValue(1)
 
@@ -39,38 +44,35 @@ class DieView:
         return pip
 
     def setValue(self, value):
-        self.pip1.setFill(self.background)
-        self.pip2.setFill(self.background)
-        self.pip3.setFill(self.background)
-        self.pip4.setFill(self.background)
-        self.pip5.setFill(self.background)
-        self.pip6.setFill(self.background)
-        self.pip7.setFill(self.background)
+        for pip in self.pips:
+            pip.setFill(self.background)
 
-        if value == 1:
-            self.pip4.setFill(self.foregroud)
-        elif value == 2:
-            self.pip1.setFill(self.foregroud)
-            self.pip7.setFill(self.foregroud)
-        elif value == 3:
-            self.pip1.setFill(self.foregroud)
-            self.pip7.setFill(self.foregroud)
-            self.pip4.setFill(self.foregroud)
-        elif value == 4:
-            self.pip1.setFill(self.foregroud)
-            self.pip3.setFill(self.foregroud)
-            self.pip5.setFill(self.foregroud)
-            self.pip7.setFill(self.foregroud)
-        elif value == 5:
-            self.pip1.setFill(self.foregroud)
-            self.pip3.setFill(self.foregroud)
-            self.pip4.setFill(self.foregroud)
-            self.pip5.setFill(self.foregroud)
-            self.pip7.setFill(self.foregroud)
-        else:
-            self.pip1.setFill(self.foregroud)
-            self.pip2.setFill(self.foregroud)
-            self.pip3.setFill(self.foregroud)
-            self.pip5.setFill(self.foregroud)
-            self.pip6.setFill(self.foregroud)
-            self.pip7.setFill(self.foregroud)
+        for i in self.onTable[value]:
+            self.pips[i].setFill(self.foregroud)
+
+        # if value == 1:
+        #     self.pips[3].setFill(self.foregroud)
+        # elif value == 2:
+        #     self.pips[0].setFill(self.foregroud)
+        #     self.pips[6].setFill(self.foregroud)
+        # elif value == 3:
+        #     for i in [0, 3, 6]:
+        #         self.pips[i].setFill(self.foregroud)
+        # elif value == 4:
+        #     self.pip1.setFill(self.foregroud)
+        #     self.pip3.setFill(self.foregroud)
+        #     self.pip5.setFill(self.foregroud)
+        #     self.pip7.setFill(self.foregroud)
+        # elif value == 5:
+        #     self.pip1.setFill(self.foregroud)
+        #     self.pip3.setFill(self.foregroud)
+        #     self.pip4.setFill(self.foregroud)
+        #     self.pip5.setFill(self.foregroud)
+        #     self.pip7.setFill(self.foregroud)
+        # else:
+        #     self.pip1.setFill(self.foregroud)
+        #     self.pip2.setFill(self.foregroud)
+        #     self.pip3.setFill(self.foregroud)
+        #     self.pip5.setFill(self.foregroud)
+        #     self.pip6.setFill(self.foregroud)
+        #     self.pip7.setFill(self.foregroud)
