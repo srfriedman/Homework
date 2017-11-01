@@ -23,16 +23,17 @@ class DieView:
         rect.setFill(self.background)
 
         self.pips = [
-            self.__makePip(cx, cy),     #middle dot
+
 
             self.__makePip(cx-offset, cy-offset),   #Outside 6
             self.__makePip(cx-offset, cy),
             self.__makePip(cx-offset, cy+offset),
+            self.__makePip(cx, cy),                 #middle dot
             self.__makePip(cx+offset, cy-offset),
             self.__makePip(cx+offset, cy),
             self.__makePip(cx+offset, cy+offset),
 
-            self.__makePip(cx, cy+offset),      #middle top & bottom
+            self.__makePip(cx, cy+offset),          #middle top & bottom
             self.__makePip(cx, cy-offset),
 
             self.__makePip(cx+(1/2*offset), cy+(1/2*offset)),       #Interior four
