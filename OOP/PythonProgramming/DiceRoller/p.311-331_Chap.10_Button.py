@@ -8,7 +8,7 @@ from random import randrange
 from graphics import GraphWin, Point
 
 from button import Button
-from dieview import DieView
+from dieview_12 import DieView
 
 def main():
     win = GraphWin("Dice Roller")
@@ -25,10 +25,10 @@ def main():
     pt = win.getMouse()
     while not quitButton.clicked(pt):
         if rollButton.clicked(pt):
-            value1 = randrange(1, 7)
+            value1 = randrange(1, 13)
             die1.setValue(value1)
 
-            value2 = randrange(1, 7)
+            value2 = randrange(1, 13)
             die2.setValue(value2)
 
             quitButton.activate()
