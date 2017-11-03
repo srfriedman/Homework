@@ -1,4 +1,4 @@
-#Raquetball Exercise
+#Racquetball Exercise
 #Sarah Friedman
 #11/2/17
 
