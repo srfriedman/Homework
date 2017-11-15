@@ -13,11 +13,12 @@ class PokerApp:
             numList = self.score(numList)
             self.playRound(numList)
             self.score(numList)
-            #print("NumList: ", numList)
             self.playAgain(numList)
         self.interface.close()
 
     def playRound(self, numList):
+        """Uses self.score() to see if the number previously rolled is higher or lower - different results depending
+        on if number is higher or lower"""
         self.doRolls()
         numList = self.score(numList)
         result = self.dice.newScore()
@@ -42,6 +43,8 @@ class PokerApp:
                 toRoll = self.interface.chooseDice()
 
     def playAgain(self, numList):
+        """Asks if you want to try and score a higher number - quits program if answer == no"""
+
         answer = str(input("Do you wish to try and score a higher number? Type Y/y or N/n\n"))
         if answer == "y" or answer == "Y":
             return True
@@ -50,11 +53,13 @@ class PokerApp:
             quit()
 
     def score(self, numList):
-        maxNum = self.dice.newScore()
+        """Compares the old number rolled to the new number
+        Currently an error where the old number is always equal to 0 and not to the previous number rolled"""
+        num = self.dice.newScore()
 
         listValNew = ''.join(str(e) for e in str(numList))
 
-        new = maxNum
+        new = num
         old = listValNew
 
         print("Old, ", old)
