@@ -76,7 +76,7 @@ class GraphicsInterface:
                     return b.getLabel()  # function exit here.
 
 
-numList = [0]
+numList = ['0']
 
 inter = GraphicsInterface()
 app = PokerApp(inter)

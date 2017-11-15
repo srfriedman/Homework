@@ -10,24 +10,26 @@ class PokerApp:
 
     def run(self, numList):
         while self.interface.wantToPlay():
-            numList = self.dice.score(numList)
+            numList = self.score(numList)
             self.playRound(numList)
-            self.dice.score(numList)
+            self.score(numList)
             print("NumList: ", numList)
-            print("Your score is: ", self.dice.score(numList[0]))
+            print("Your score is: ", numList[0])
             self.playAgain(numList)
         self.interface.close()
 
     def playRound(self, numList):
         self.doRolls()
-        numList = self.dice.score(numList)
-        print(numList)
-        if self.dice.score(numList) == True:
-            print("You rolled", self.dice.score)
-            numList.insert(0, self.dice.score)
+        numList = self.score(numList)
+        print(bool(numList))
+        if self.score(numList) == True:
+            print("You rolled", self.score)
+            numList = list(numList)
+            newNum = self.score(numList)
+            numList.insert(0, newNum)
             print("You beat your previous score. Congrats!")
-        elif self.dice.score(numList) == False:
-            print("You rolled", self.dice.score)
+        elif self.score(numList) == False:
+            print("You rolled", self.score)
             print("You rolled a lower value than you did previously. Better luck next time!")
             exit()
 
@@ -48,6 +50,32 @@ class PokerApp:
         if answer == "y" or answer == "Y":
             return True
         elif answer == "n" or answer == "N":
-            print("Thank you for playing, your final score was: ", self.dice.score(numList[0]))
+            print("Thank you for playing, your final score was: ", self.score(numList[0]))
             quit()
 
+    def score(self, numList):
+        maxNum = self.dice.newScore(numList)
+
+        numList = list(numList)
+
+        numList.insert(0, maxNum)
+
+        listValNew = ''.join(str(e) for e in str(numList[0]))
+
+        listNew = []
+
+        listNew.append('0')
+
+        listNew.insert(0, listValNew)
+
+        print("ListNew: ", listNew)
+
+        new = listNew[0]
+        old = listNew[1]
+
+        if old > new:
+            print("OldNum > NewNum")
+            return False
+        elif new > old:
+            print("NewNum > OldNum")
+            return True
