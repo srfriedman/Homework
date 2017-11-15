@@ -18,7 +18,7 @@ class Dice:
     def values(self):
         return self.dice[:]
 
-    def newScore(self, list):
+    def newScore(self):
         counts = [0] * 7
         for value in self.dice:
             counts[value] = counts[value] + 1
@@ -45,5 +45,5 @@ class Dice:
 
         if len(str(maxNum)) > 1:
             maxNum = ''.join(str(e) for e in maxNum)
-            print(maxNum)
+            print("You rolled ", maxNum)
             return maxNum
