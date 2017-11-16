@@ -1,7 +1,6 @@
 # pokerapp.py
 
 from dice import Dice
-import time
 
 class PokerApp:
 
