@@ -45,5 +45,4 @@ class Dice:
 
         if len(str(maxNum)) > 1:
             maxNum = ''.join(str(e) for e in maxNum)
-            print("You rolled ", maxNum)
             return maxNum

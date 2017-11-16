@@ -8,25 +8,28 @@ class PokerApp:
         self.dice = Dice()
         self.interface = interface
 
-    def run(self, numList):
+    def run(self):
         while self.interface.wantToPlay():
-            numList = self.score(numList)
-            self.playRound(numList)
-            self.score(numList)
-            self.playAgain(numList)
+            self.doRolls()
+            firstScore = self.dice.newScore()
+
+            val, old = self.compare(firstScore)
+            self.playRound(firstScore)
+            self.compare(old)
+            self.playAgain(val)
         self.interface.close()
 
     def playRound(self, numList):
         """Uses self.score() to see if the number previously rolled is higher or lower - different results depending
         on if number is higher or lower"""
         self.doRolls()
-        numList = self.score(numList)
-        result = self.dice.newScore()
-        if self.score(numList) != False:
-            print("You rolled", result)
+        #numList = self.score(numList)
+        score2 = self.dice.newScore()
+        if self.compare(numList) != False:
+            print("You rolled", score2)
             print("You beat your previous score. Congrats!\n")
 
-        elif self.score(numList) == False:
+        elif self.compare(numList) == False:
             print("You rolled a lower value than you did previously. Better luck next time!")
             exit()
 
@@ -49,23 +52,16 @@ class PokerApp:
         if answer == "y" or answer == "Y":
             return True
         elif answer == "n" or answer == "N":
-            print("Thank you for playing, your final score was: ", self.score(numList))
+            print("Thank you for playing, your final score was: ", self.compare(numList))
             quit()
 
-    def score(self, numList):
+    def compare(self, score1, score2):
         """Compares the old number rolled to the new number
         Currently an error where the old number is always equal to 0 and not to the previous number rolled"""
-        num = self.dice.newScore()
 
-        listValNew = ''.join(str(e) for e in str(numList))
-
-        new = num
-        old = listValNew
-
-        print("Old, ", old)
-        print("New, ", new)
-
-        if old > new:
+        if score1 > score2:
             return False
-        elif new > old:
-            return listValNew
+        elif score2 > score1:
+            old = score2
+            print("new old", old)
+            return score2, old

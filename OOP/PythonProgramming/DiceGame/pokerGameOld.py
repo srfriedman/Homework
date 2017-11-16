@@ -2,7 +2,7 @@
 #Sarah Friedman
 
 from graphics import *
-from pokerapp import PokerApp
+from pokerappSachi import PokerApp
 from button import Button
 from cdieview import ColorDieView
 
@@ -76,8 +76,6 @@ class GraphicsInterface:
                     return b.getLabel()  # function exit here.
 
 
-numList = 0
-
 inter = GraphicsInterface()
 app = PokerApp(inter)
-app.run(numList)
+app.run()
