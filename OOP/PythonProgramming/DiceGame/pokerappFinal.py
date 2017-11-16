@@ -10,6 +10,7 @@ class PokerApp:
         self.interface = interface
 
     def run(self):
+        self.intro_rules()
         while self.interface.wantToPlay():
             self.doRolls()
             score1 = self.dice.newScore()
@@ -29,30 +30,51 @@ class PokerApp:
 
                 score2 = score_b
 
-                self.interface.showhiscore(score2)
-
-                self.playAgain(score2)
+                self.scoreHigher(score2)
 
             elif compare_a_b == False:
                 print("You rolled", score_b)
-                print("You rolled a lower value than your previous score of", score_a, ". Better luck next time!")
+                print("You rolled a lower value than your previous score of", score_a, ". Better luck next time!\n")
+                self.playAgain(score_b)
 
     def doRolls(self):
         self.dice.rollAll()
         self.interface.setDice(self.dice.values())
 
-    def playAgain(self, score2):
+    def scoreHigher(self, score2):
         answer = str(input("Do you wish to try and score a higher number? Type Y/y or N/n\n"))
+        self.interface.showhiscore(score2)
         if answer == "y" or answer == "Y":
             self.playRound(score2)
         elif answer == "n" or answer == "N":
-            print("Thank you for playing, your final score was: ", score2)
+            print("Thank you for playing, your final score was: ", score2, "\n")
+            self.playAgain(score2)
+
+    def playAgain(self, score2):
+        answer = str(input("Would you like to play again? Type Y/y or N/n\n"))
+        if answer == "y" or answer == "Y":
+            self.interface.showhiscore(0)
+            self.interface.shownewroll(0)
             self.run()
+        elif answer == "n" or answer == "N":
+            print("Thank you for playing, your final score was: ", score2)
+            quit()
 
     def compare_new_old_scores(self, score1, score2):
         if score1 > score2:
-            #self.interface.showResult(score1)
             return score1, score2, False
         elif score1 < score2:
             return score1, score2, True
 
+    def intro_rules(self):
+        print("Hello, and welcome to Sarah's Dice Game!\n\n"
+              "The rules of the game are simple:\n"
+              "Press the 'Roll Dice' button to roll all five dice and try\n"
+              "and roll the highest number you can.\n"
+              "For example: You roll a 1, 6, 3, 4 and 6, the highest number you can get would be 66431.\n\n"
+              "You can then choose whether or not you want to try to roll a higher number.\n"
+              "If you roll 43221, there would be a large change of rolling a higher number than\n"
+              "if you rolled 64332.\n\n"
+              "You continue to roll until you can no longer get a higher number, or do not want\n"
+              "to risk scoring a lower number.\n\n"
+              "Have fun and good luck!")
