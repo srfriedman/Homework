@@ -2,7 +2,7 @@
 #Sarah Friedman
 
 from graphics import *
-from pokerappSachi import PokerApp
+from pokerappFinal import PokerApp
 from button import Button
 from cdieview import ColorDieView
 
@@ -42,11 +42,11 @@ class GraphicsInterface:
             center.move(1.5*size, 0)
 
     def showhiscore(self, score):
-        text = "Roll one = {0}".format(score)
+        text = "Roll One = {0}".format(score)
         self.high_score.setText(text)
 
     def shownewroll(self, score):
-        text = "Roll two = {0}".format(score)
+        text = "Roll Two = {0}".format(score)
         self.new_score.setText(text)
 
     def setDice(self, values):
@@ -68,15 +68,12 @@ class GraphicsInterface:
             if b.getLabel() in choices:
                 b.activate()
 
-        # get mouse clicks until an active button is clicked
         while True:
             p = self.win.getMouse()
             for b in buttons:
                 if b.clicked(p):
-                    return b.getLabel()  # function exit here.
+                    return b.getLabel()
 
-
-numList = ['0']
 
 inter = GraphicsInterface()
 app = PokerApp(inter)
