@@ -70,7 +70,7 @@ class PokerApp:
         print("Hello, and welcome to Sarah's Dice Game!\n\n"
               "The rules of the game are simple:\n"
               "Press the 'Roll Dice' button to roll all five dice and try\n"
-              "and roll the highest number you can.\n"
+              "to roll the highest number you can.\n"
               "For example: You roll a 1, 6, 3, 4 and 6, the highest number you can get would be 66431.\n\n"
               "You can then choose whether or not you want to try to roll a higher number.\n"
               "If you roll 43221, there would be a large change of rolling a higher number than\n"
