@@ -7,9 +7,9 @@ class PokerApp:
     def __init__(self, interface):
         self.dice = Dice()
         self.interface = interface
+        self.intro_rules()
 
     def run(self):
-        self.intro_rules()
         while self.interface.wantToPlay():
             self.doRolls()
             score1 = self.dice.newScore()
@@ -22,7 +22,7 @@ class PokerApp:
             self.doRolls()
             score2 = self.dice.newScore()
             self.interface.shownewroll(score2)
-            score_a, score_b, compare_a_b = self.compare_new_old_scores(score1, score2)
+            score_a, score_b, compare_a_b = self.compareNew_oldScores(score1, score2)
             if compare_a_b == True:
                 print("You rolled", score_b)
                 print("You beat your previous score of:", score_a, ". Congrats!")
@@ -59,7 +59,7 @@ class PokerApp:
             print("Thank you for playing, your final score was: ", score2)
             quit()
 
-    def compare_new_old_scores(self, score1, score2):
+    def compareNew_oldScores(self, score1, score2):
         if score1 > score2:
             return score1, score2, False
         elif score1 < score2:
@@ -76,4 +76,4 @@ class PokerApp:
               "if you rolled 64332.\n\n"
               "You continue to roll until you can no longer get a higher number, or do not want\n"
               "to risk scoring a lower number.\n\n"
-              "Have fun and good luck!")
+              "Have fun and good luck!\n\n")
