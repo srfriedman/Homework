@@ -6,12 +6,13 @@ from pokerappFinal import PokerApp
 from button import Button
 from cdieview import ColorDieView
 
-class GraphicsInterface:
+class GraphicsInterface:        #Creates GraphicsInterface class
 
     def __init__(self):
         self.win = GraphWin("Sarah's Dice Game", 600, 400)
         self.win.setBackground("green3")
-        banner = Text(Point(300, 20), "Python  Dice Game")
+
+        banner = Text(Point(300, 20), "Python  Dice Game")    #Lines 15-47: Creates text
         banner.setSize(24)
         banner.setFill("black")
         banner.setStyle("bold")
@@ -47,7 +48,7 @@ class GraphicsInterface:
 
 #       ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~  ~       #
 
-        self.createDice(Point(300, 200), 75)
+        self.createDice(Point(300, 200), 75)        #Lines 51-62: Creates the buttons
         self.buttons = []
         self.b_roll = Button(self.win, Point(300, 325), 400, 40, "Roll Dice")
         self.buttons.append(self.b_roll)
@@ -60,7 +61,7 @@ class GraphicsInterface:
         self.b_playAgain = Button(self.win, Point(60, 325), 60, 40, "Play Again")
         self.buttons.append(self.b_playAgain)
 
-    def createDice(self, center, size):
+    def createDice(self, center, size):     #Creates the dice
         center.move(-3*size, 40)
         self.dice = []
         for i in range(5):
@@ -68,46 +69,46 @@ class GraphicsInterface:
             self.dice.append(view)
             center.move(1.5*size, 0)
 
-    def showRules(self, rules):
+    def showRules(self, rules):     #Makes the rules appear on the screen
         text = "{0}".format(rules)
         self.rules.setText(text)
 
-        if self.choose(["Roll Dice"]) == "Roll Dice":
+        if self.choose(["Roll Dice"]) == "Roll Dice":       #When you roll the dice, the rules disappear
             self.rules.setFill("green3")
 
-    def showMessage(self, message):
+    def showMessage(self, message):     #Shows a message
         text = "{0}".format(message)
         self.message.setText(text)
 
-    def showMessage2(self, message):
+    def showMessage2(self, message):    #Shows another message
         text = "{0}".format(message)
         self.message2.setText(text)
 
-    def showhiscore(self, score):
+    def showhiscore(self, score):       #Shows your previous roll
         text = "Roll One = {0}".format(score)
         self.high_score.setText(text)
 
-    def shownewroll(self, score):
+    def shownewroll(self, score):       #Shows your latest roll
         text = "Roll Two = {0}".format(score)
         self.new_score.setText(text)
 
-    def showFinal(self, score):
+    def showFinal(self, score):         #Shows your final score
         text = "Your final score was: {0}".format(score)
         self.final_score.setText(text)
 
-    def setDice(self, values):
+    def setDice(self, values):          #Sets the values of the dice
         for i in range(5):
             self.dice[i].setValue(values[i])
 
-    def wantToPlay(self):
+    def wantToPlay(self):               #Makes sure the player wants to play
         ans = self.choose(["Roll Dice", "Quit"])
         self.msg.setText("")
         return ans == "Roll Dice"
 
-    def close(self):
+    def close(self):                    #Closes the window
         self.win.close()
 
-    def choose(self, choices):
+    def choose(self, choices):          #Function that checks if any of the buttons have been pressed
         buttons = self.buttons
 
         for b in buttons:
@@ -120,7 +121,7 @@ class GraphicsInterface:
                 if b.clicked(p):
                     return b.getLabel()
 
-
+#Runs the game
 inter = GraphicsInterface()
 app = PokerApp(inter)
 app.run()
