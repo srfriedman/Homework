@@ -40,7 +40,7 @@ class DieView:
 
     def __makePip(self, x, y):
         "Internal helper method to draw a pip at (x,y)"
-        pip = Circle(Point(x,y), self.psize)
+        pip = Circle(Point(x, y), self.psize)
         pip.setFill(self.background)
         pip.setOutline(self.background)
         pip.draw(self.win)

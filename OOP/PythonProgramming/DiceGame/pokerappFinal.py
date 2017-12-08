@@ -7,9 +7,11 @@ class PokerApp:
     def __init__(self, interface):
         self.dice = Dice()
         self.interface = interface
-        self.intro_rules()
 
     def run(self):
+        text = self.intro_rules()
+        self.interface.showRules(text)
+
         while self.interface.wantToPlay():
             self.doRolls()
             score1 = self.dice.newScore()
@@ -24,16 +26,19 @@ class PokerApp:
             self.interface.shownewroll(score2)
             score_a, score_b, compare_a_b = self.compareNew_oldScores(score1, score2)
             if compare_a_b == True:
-                print("You rolled", score_b)
-                print("You beat your previous score of:", score_a, ". Congrats!")
-
+                text = "You rolled", score_b, "You beat your previous score of:", score_a, ". Congrats!"
+                text2 = "Would you like to play again?"
+                self.interface.showMessage(text)
+                self.interface.showMessage2(text2)
                 score2 = score_b
-
                 self.scoreHigher(score2)
 
             elif compare_a_b == False:
-                print("You rolled", score_b)
-                print("You rolled a lower value than your previous score of", score_a, ". Better luck next time!\n")
+                text = "You rolled", score_b
+                text2 = "You rolled a lower value than your previous score of", score_a, ". Better luck next time!"
+                self.interface.showMessage(text)
+                self.interface.showMessage2(text2)
+                self.interface.showFinal(score_b)
                 self.playAgain(score_b)
 
     def doRolls(self):
@@ -41,22 +46,27 @@ class PokerApp:
         self.interface.setDice(self.dice.values())
 
     def scoreHigher(self, score2):
-        answer = str(input("Do you wish to try and score a higher number? Type Y/y or N/n\n"))
         self.interface.showhiscore(score2)
-        if answer == "y" or answer == "Y":
+        if self.interface.choose(["Yes", "Quit"]) == "Yes":
             self.playRound(score2)
-        elif answer == "n" or answer == "N":
-            print("Thank you for playing, your final score was: ", score2, "\n")
+        elif self.interface.choose(["Yes", "Quit"]) == "Quit":
+            text = "Thank you for playing, your final score was: ", score2
+
+            self.interface.showFinal(score2)
+            self.interface.showMessage(text)
             self.playAgain(score2)
 
     def playAgain(self, score2):
-        answer = str(input("Would you like to play again? Type Y/y or N/n\n"))
-        if answer == "y" or answer == "Y":
+        if self.interface.choose(["Play Again", "Quit"]) == "Play Again":
             self.interface.showhiscore(0)
             self.interface.shownewroll(0)
+            self.interface.showFinal("")
+            self.interface.showMessage("")
+            self.interface.showMessage2("")
             self.run()
-        elif answer == "n" or answer == "N":
-            print("Thank you for playing, your final score was: ", score2)
+        elif self.interface.choose(["Play Again", "Quit"]) == "Quit":
+            text = "Thank you for playing, your final score was: ", score2
+            self.interface.showMessage(text)
             quit()
 
     def compareNew_oldScores(self, score1, score2):
@@ -66,14 +76,15 @@ class PokerApp:
             return score1, score2, True
 
     def intro_rules(self):
-        print("Hello, and welcome to Sarah's Dice Game!\n\n"
-              "The rules of the game are simple:\n"
-              "Press the 'Roll Dice' button to roll all five dice and try\n"
-              "to roll the highest number you can.\n"
-              "For example: You roll a 1, 6, 3, 4 and 6, the highest number you can get would be 66431.\n\n"
-              "You can then choose whether or not you want to try to roll a higher number.\n"
-              "If you roll 43221, there would be a large change of rolling a higher number than\n"
-              "if you rolled 64332.\n\n"
-              "You continue to roll until you can no longer get a higher number, or do not want\n"
-              "to risk scoring a lower number.\n\n"
-              "Have fun and good luck!\n\n")
+        text = "Hello, and welcome to Sarah's Dice Game! The \n" \
+               "rules of the game are simple: Press the 'Roll Dice' \n" \
+               "button to roll all five dice and try to roll the highest number\n" \
+               "you can. For example: You roll a 1, 6, 3, 4 and 6, the highest\n" \
+               "number you can get would be 66431. You can then choose whether\n" \
+               "or not you want to try to roll a higher number. If you roll 43221,\n" \
+               "there would be a large change of rolling a higher number than\n" \
+               "if you rolled 64332. You continue to roll until you can no longer\n" \
+               "get a higher number, or do not want to risk scoring a lower number.\n" \
+               "Have fun and good luck!"
+        return text
+
